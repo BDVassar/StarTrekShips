@@ -11,14 +11,16 @@ CREATE TABLE
 CREATE TABLE
     ships(
         id VARCHAR(255) NOT NULL PRIMARY KEY COMMENT 'primary key',
-        name VARCHAR(255) NOT NULL,
-        quadrent VARCHAR(255) NOT NULL,
-        crewComplement INT NOT NULL,
-        phasers BOOLEAN NOT NULL,
-        torpedos BOOLEAN NOT NULL,
-        shields BOOLEAN NOT NULL,
-        shipPrefix VARCHAR(255) NOT NULL,
-        alliance VARCHAR(255) NOT NULL,
-        shuttles INT NOT NULL,
-        class VARCHAR(255) NOT NULL
+        name VARCHAR(255) NOT NULL COMMENT 'Name of Ship',
+        quadrant VARCHAR(255) NOT NULL COMMENT 'Quadrent location',
+        crewComplement INT NOT NULL COMMENT 'Number of Crewmen',
+        phasers BOOLEAN NOT NULL COMMENT 'Does the ship have phasers',
+        torpedos BOOLEAN NOT NULL COMMENT ' Does the ship have torpedos',
+        shields BOOLEAN NOT NULL COMMENT 'Does the ship have shields',
+        shipPrefix VARCHAR(255) NOT NULL COMMENT 'Ship Prefix',
+        alliance VARCHAR(255) NOT NULL COMMENT 'Alliance',
+        shuttles INT NOT NULL COMMENT 'Does the ship have shuttles',
+        classification VARCHAR(255) NOT NULL COMMENT 'Class of ship'
     ) default charset utf8 COMMENT '';
+
+DROP TABLE ships;
