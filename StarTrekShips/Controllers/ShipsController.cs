@@ -13,4 +13,15 @@ public class ShipsController : ControllerBase
     _shipsService = shipsService;
     _auth0provider = auth0provider;
   }
+
+  public ActionResult<Ship> Get(){
+    try
+    {
+      
+    }
+    catch (Exception e)
+    {
+      return BadRequest(e.Message);
+    }
+  }
 }
