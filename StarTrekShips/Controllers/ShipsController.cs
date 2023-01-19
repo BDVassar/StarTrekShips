@@ -14,10 +14,14 @@ public class ShipsController : ControllerBase
     _auth0provider = auth0provider;
   }
 
-  public ActionResult<Ship> Get(){
+  [HttpGet]
+  public async Task<ActionResult<List<Ship>>> Get()
+  {
     try
     {
-      
+      Account userInfo = await _auth0provider.GetUserInfoAsync<Account>(HttpContext);
+      List<Ship> ships = _shipsService.Get(userInfo?.Id);
+      return Ok(ships);
     }
     catch (Exception e)
     {

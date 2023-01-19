@@ -10,7 +10,7 @@ CREATE TABLE
 
 CREATE TABLE
     ships(
-        id VARCHAR(255) NOT NULL PRIMARY KEY COMMENT 'primary key',
+        id int NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'primary key',
         name VARCHAR(255) NOT NULL COMMENT 'Name of Ship',
         quadrant VARCHAR(255) NOT NULL COMMENT 'Quadrent location',
         crewComplement INT NOT NULL COMMENT 'Number of Crewmen',
@@ -20,7 +20,37 @@ CREATE TABLE
         shipPrefix VARCHAR(255) NOT NULL COMMENT 'Ship Prefix',
         alliance VARCHAR(255) NOT NULL COMMENT 'Alliance',
         shuttles INT NOT NULL COMMENT 'Does the ship have shuttles',
-        classification VARCHAR(255) NOT NULL COMMENT 'Class of ship'
+        classification VARCHAR(255) NOT NULL COMMENT 'Class of ship',
+        creatorId VARCHAR(255) NOT NULL,
+        FOREIGN KEY (creatorId) REFERENCES accounts (id) ON DELETE CASCADE
     ) default charset utf8 COMMENT '';
 
 DROP TABLE ships;
+
+INSERT INTO
+    ships(
+        name,
+        quadrant,
+        crewComplement,
+        phasers,
+        torpedos,
+        shields,
+        shipPrefix,
+        alliance,
+        shuttles,
+        classification,
+        creatorId
+    )
+VALUES (
+        "USS Voyager",
+        "Alpha",
+        "141",
+        true,
+        true,
+        true,
+        "NCC-74656",
+        "United Federation Of Planets",
+        true,
+        "Intrepid Class",
+        "6387d94b68790d657c7154ca"
+    );

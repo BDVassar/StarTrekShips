@@ -13,4 +13,5 @@ public class Ship
   public string alliance { get; set; }
   public int shuttles { get; set; }
   public string classification { get; set; }
+  public Account Creator { get; set; }
 }

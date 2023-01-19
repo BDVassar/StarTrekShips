@@ -9,4 +9,10 @@ public class ShipsService
   {
     _shipsRepository = shipsRepository;
   }
+
+  internal List<Ship> Get(string userId)
+  {
+    List<Ship> ships = _shipsRepository.Get();
+    return ships;
+  }
 }
