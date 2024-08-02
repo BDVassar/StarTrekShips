@@ -22,6 +22,20 @@ CREATE TABLE ships (
     creatorId VARCHAR(255) NOT NULL
 ) default charset utf8 COMMENT '';
 
+ALTER TABLE ships
+ADD COLUMN type VARCHAR(255) NOT NULL COMMENT 'Type of the ship',
+ADD COLUMN captain VARCHAR(255) NULL COMMENT 'Name of the current captain',
+ADD COLUMN passengerCapacity INT NULL COMMENT 'Number of passengers the ship can accommodate',
+ADD COLUMN speed INT NULL COMMENT 'Warp factor or maximum speed',
+ADD COLUMN sensors BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Does the ship have sensors?',
+ADD COLUMN dockingBay BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Does the ship have a docking bay?',
+ADD COLUMN sickBay BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Does the ship have a sick bay?',
+ADD COLUMN cloakingDevice BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Does the ship have a cloaking device?',
+ADD COLUMN tractorBeam BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Does the ship have a tractor beam?',
+ADD COLUMN transporter BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Does the ship have a transporter?',
+ADD COLUMN capacity INT NULL COMMENT 'Cargo capacity of the ship',
+MODIFY creatorId VARCHAR(255) NULL COMMENT 'Account ID of the creator';
+
 DROP TABLE ships;
 
 INSERT INTO
