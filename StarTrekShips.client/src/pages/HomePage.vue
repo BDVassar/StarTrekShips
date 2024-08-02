@@ -1,30 +1,15 @@
 <template>
   <div>
-    <h1>Ships</h1>
-    <ul>
-      <li v-for="ship in ships" :key="ship.id">
-        {{ ship.name }}
-      </li>
-    </ul>
+    <ResourceGame></ResourceGame>
   </div>
 </template>
 
 <script>
-import ShipService from '../services/ShipService.js';
 
 export default {
   data() {
     return {
-      ships: [],
     };
-  },
-  async created() {
-    try {
-      const ships = await ShipService.getAllShips();
-      this.ships = ships;
-    } catch (error) {
-      console.error('Error fetching ships:', error);
-    }
   },
 };
 </script>
