@@ -6,12 +6,10 @@ public class ShipsController : ControllerBase
 {
 
   private readonly ShipsService _shipsService;
-  private readonly Auth0Provider _auth0provider;
 
   public ShipsController(ShipsService shipsService, Auth0Provider auth0provider)
   {
     _shipsService = shipsService;
-    _auth0provider = auth0provider;
   }
 
   [HttpGet]
@@ -19,8 +17,7 @@ public class ShipsController : ControllerBase
   {
     try
     {
-      Account userInfo = await _auth0provider.GetUserInfoAsync<Account>(HttpContext);
-      List<Ship> ships = _shipsService.Get(userInfo?.Id);
+      List<Ship> ships = _shipsService.Get();
       return Ok(ships);
     }
     catch (Exception e)
