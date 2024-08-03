@@ -2,11 +2,16 @@
   <div>
     <ResourceGame></ResourceGame>
   </div>
+  <div>
+    <CrewMembers></CrewMembers>
+  </div>
 </template>
 
 <script>
 
 export default {
+  onMounted() {
+  },
   data() {
     return {
     };

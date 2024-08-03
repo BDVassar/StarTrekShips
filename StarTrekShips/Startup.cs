@@ -36,6 +36,9 @@ public class Startup
 
     services.AddScoped<ShipsRepository>();
     services.AddScoped<ShipsService>();
+
+    services.AddScoped<CrewsRepository>();
+    services.AddScoped<CrewsService>();
   }
 
   private void ConfigureCors(IServiceCollection services)

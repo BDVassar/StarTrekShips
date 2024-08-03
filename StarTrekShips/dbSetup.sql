@@ -65,3 +65,38 @@ VALUES (
         "Intrepid Class",
         "6387d94b68790d657c7154ca"
     );
+
+CREATE TABLE CrewMember (
+    CrewMemberID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Rating VARCHAR(20) NOT NULL,
+    Position VARCHAR(30) NOT NULL,
+    SpeciesID INT,
+    Age INT NOT NULL,
+    Gender VARCHAR(10),
+    FOREIGN KEY (SpeciesID) REFERENCES Species (SpeciesID)
+);
+
+DROP Table CrewMember;
+
+-- Planet Table
+CREATE TABLE Planet (
+    PlanetID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Type VARCHAR(30),
+    Atmosphere VARCHAR(50),
+    Gravity DECIMAL(4, 2),
+    Population BIGINT,
+    UNIQUE (Name)
+);
+
+-- Species Table
+CREATE TABLE Species (
+    SpeciesID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Classification VARCHAR(50),
+    HomePlanetID INT,
+    AverageHeight DECIMAL(4, 2),
+    AverageLifespan INT,
+    FOREIGN KEY (HomePlanetID) REFERENCES Planet (PlanetID)
+);
