@@ -5,6 +5,11 @@
   <div>
     <CrewMembers></CrewMembers>
   </div>
+  <div>
+    <h1>Welcome to the Star Trek Ship Combat Game</h1>
+    <!-- Inject the FederationShipGame component here -->
+    <federation-ship-game></federation-ship-game>
+  </div>
 </template>
 
 <script>
