@@ -100,3 +100,136 @@ CREATE TABLE Species (
     AverageLifespan INT,
     FOREIGN KEY (HomePlanetID) REFERENCES Planet (PlanetID)
 );
+
+CREATE Table FSGFederationShips (
+    name VARCHAR(100) NOT NULL,
+    Health INT,
+    MaxHealth int,
+    ShieldStrength int,
+    PhaserDamage int
+);
+
+INSERT INTO
+    FSGFederationShips (
+        name,
+        health,
+        maxHealth,
+        shieldStrength,
+        phaserDamage
+    )
+VALUES (
+        "Enterprise-D",
+        150,
+        150,
+        75,
+        15
+    ),
+    (
+        "Deep Space Nine",
+        120,
+        120,
+        60,
+        12
+    ),
+    ("Defiant", 100, 100, 50, 10),
+    ("Voyager", 80, 80, 40, 8),
+    ("Discovery", 180, 180, 90, 20);
+
+ALTER TABLE FSGFederationShips
+ADD img VARCHAR(255);
+
+
+UPDATE FSGFederationShips
+SET
+    img = CASE
+        WHEN name = "Enterprise-D" THEN "path/to/enterprise_d.jpg"
+        WHEN name = "Deep Space Nine" THEN "path/to/deep_space_nine.jpg"
+        WHEN name = "Defiant" THEN "path/to/defiant.jpg"
+        WHEN name = "Voyager" THEN "path/to/voyager.jpg"
+        WHEN name = "Discovery" THEN "path/to/discovery.jpg"
+        ELSE NULL
+    END;
+
+CREATE Table FSGBorgShips (
+    name VARCHAR(100) NOT NULL,
+    Health INT,
+    MaxHealth int,
+    ShieldStrength int,
+    PhaserDamage int
+);
+
+INSERT INTO
+    FSGBorgShips (
+        name,
+        health,
+        maxHealth,
+        shieldStrength,
+        phaserDamage
+    )
+VALUES (
+        "Borg Cube",
+        200,
+        200,
+        100,
+        25
+    ),
+    (
+        "Klingon Bird-of-Prey",
+        150,
+        150,
+        80,
+        20
+    ),
+    (
+        "Romulan Warbird",
+        120,
+        120,
+        60,
+        15
+    ),
+    (
+        "Cardassian Cruiser",
+        90,
+        90,
+        45,
+        10
+    ),
+    (
+        "Gorn Battle Cruiser",
+        180,
+        180,
+        90,
+        20
+    );
+
+CREATE Table FSGKlingonShips (
+    name VARCHAR(100) NOT NULL,
+    Health INT,
+    MaxHealth int,
+    ShieldStrength int,
+    PhaserDamage int
+);
+
+CREATE Table FSGRomulanShips (
+    name VARCHAR(100) NOT NULL,
+    Health INT,
+    MaxHealth int,
+    ShieldStrength int,
+    PhaserDamage int
+);
+
+CREATE Table FSGCardassianShips (
+    name VARCHAR(100) NOT NULL,
+    Health INT,
+    MaxHealth int,
+    ShieldStrength int,
+    PhaserDamage int
+);
+
+CREATE Table FSGGornShips (
+    name VARCHAR(100) NOT NULL,
+    Health INT,
+    MaxHealth int,
+    ShieldStrength int,
+    PhaserDamage int
+);
