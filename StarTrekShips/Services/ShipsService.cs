@@ -12,7 +12,6 @@ public class ShipsService
 
   internal List<Ship> Get()
   {
-    List<Ship> ships = _shipsRepository.Get();
-    return ships;
+    return _shipsRepository.Get();
   }
 }

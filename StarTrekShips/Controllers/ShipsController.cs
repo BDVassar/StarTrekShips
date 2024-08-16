@@ -13,12 +13,11 @@ public class ShipsController : ControllerBase
   }
 
   [HttpGet]
-  public async Task<ActionResult<List<Ship>>> Get()
+  public ActionResult<List<Ship>> Get()
   {
     try
     {
-      List<Ship> ships = _shipsService.Get();
-      return Ok(ships);
+      return _shipsService.Get();
     }
     catch (Exception e)
     {

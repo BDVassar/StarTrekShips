@@ -3,6 +3,9 @@
     <ResourceGame></ResourceGame>
   </div>
   <div>
+    <Ships></Ships>
+  </div>
+  <div>
     <CrewMembers></CrewMembers>
   </div>
   <div>

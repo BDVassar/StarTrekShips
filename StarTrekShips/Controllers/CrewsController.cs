@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace StarTrekShips.Controllers;
-[Route("api/crews")]
+[Route("api/[controller]")]
 [ApiController]
 public class CrewsController : ControllerBase
 {

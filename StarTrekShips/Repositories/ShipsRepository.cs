@@ -12,19 +12,9 @@ public class ShipsRepository
 
   internal List<Ship> Get()
   {
-    string sql = @"
-    SELECT
-    ships.*,
-    ac.*
-    FROM ships
-    JOIN accounts ac ON ac.id = ships.creatorId;
+    const string sql = @"
+    SELECT * FROM ships
     ";
-    List<Ship> ships = _db.Query<Ship, Account, Ship>(sql, (ship, account) =>
-    {
-      ship.Creator = account;
-      return ship;
-    }).ToList();
-
-    return ships;
+    return _db.Query<Ship>(sql).ToList();
   }
 }

@@ -74,10 +74,93 @@ CREATE TABLE CrewMember (
     SpeciesID INT,
     Age INT NOT NULL,
     Gender VARCHAR(10),
+    CrewImg VARCHAR(255) NULL,
     FOREIGN KEY (SpeciesID) REFERENCES Species (SpeciesID)
 );
 
+ALTER TABLE CrewMember ADD CrewImg VARCHAR(255) NULL AFTER Gender;
+
+INSERT INTO
+    CrewMember (
+        Name,
+        Rating,
+        Position,
+        SpeciesID,
+        Age,
+        Gender,
+        CrewImg
+    )
+VALUES (
+        "Tom Paris",
+        "Ensign",
+        "Helmsman",
+        1,
+        27,
+        "Male",
+        "https://vignette.wikia.nocookie.net/memoryalpha/images/e/ee/Tom_Paris_DS9.jpg/revision/latest/scale-to-width-down/350?cb=20171025183731"
+    ),
+    (
+        "B'Elanna Torres",
+        "Lieutenant",
+        "Chief Engineer",
+        1,
+        24,
+        "Female",
+        "https://vignette.wikia.nocookie.net/memoryalpha/images/a/a1/B%27Elanna_Torres_2373.jpg/revision/latest/scale-to-width-down/350?cb=20171025192711"
+    ),
+    (
+        "Harry Kim",
+        "Ensign",
+        "Tactical Officer",
+        1,
+        21,
+        "Male",
+        "https://vignette.wikia.nocookie.net/memoryalpha/images/3/31/Harry_Kim_in_uniform.jpg/revision/latest/scale-to-width-down/350?cb=20171025193542"
+    ),
+    (
+        "Seven of Nine",
+        "Lieutenant Commander",
+        "Former Borg",
+        1,
+        23,
+        "Female",
+        "https://vignette.wikia.nocookie.net/memoryalpha/images/e/e1/Seven_of_Nine_joins_Voyager.jpg/revision/latest/scale-to-width-down/350?cb=20171025194431"
+    ),
+    (
+        "Chakotay",
+        "Captain",
+        "Former Maquis",
+        1,
+        35,
+        "Male",
+        "https://vignette.wikia.nocookie.net/memoryalpha/images/3/33/Chakotay_in_command_uniform_2371.jpg/revision/latest/scale-to-width-down/350?cb=20171025194643"
+    ),
+    (
+        "Janeway",
+        "Captain",
+        "Human",
+        1,
+        45,
+        "Female",
+        "https://vignette.wikia.nocookie.net/memoryalpha/images/7/74/Kathryn_Janeway_promotion.jpg/revision/latest/scale-to-width-down/350?cb=20171025195057"
+    );
+
 DROP Table CrewMember;
+
+CREATE TABLE CrewMemberShips (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    CrewMemberID INT,
+    ShipID INT,
+    FOREIGN KEY (CrewMemberID) REFERENCES CrewMember (CrewMemberID),
+    FOREIGN KEY (ShipID) REFERENCES ships (id)
+);
+
+INSERT INTO
+    CrewMemberShips (CrewMemberID, ShipID)
+SELECT CrewMemberID, 1 --add to Voyager Ship id=1
+FROM CrewMember;
+
+DROP TABLE CrewMemberShips;
 
 -- Planet Table
 CREATE TABLE Planet (
@@ -90,6 +173,71 @@ CREATE TABLE Planet (
     UNIQUE (Name)
 );
 
+INSERT INTO
+    Planet (
+        Name,
+        Type,
+        Atmosphere,
+        Gravity,
+        Population
+    )
+VALUES (
+        "Alpha Centauri",
+        "M-Class",
+        "Oxygen-Nitrogen",
+        0.9,
+        20000000000
+    ),
+    (
+        "Arkadia",
+        "M-Class",
+        "Oxygen-Nitrogen",
+        1.0,
+        10000000000
+    ),
+    (
+        "Bajor",
+        "Class M",
+        "Nitrogen-Oxygen",
+        1.0,
+        10000000000
+    ),
+    (
+        "Deneva",
+        "M-Class",
+        "Oxygen-Nitrogen",
+        1.0,
+        10000000000
+    ),
+    (
+        "Ferenginar",
+        "M-Class",
+        "Carbon Dioxide",
+        1.0,
+        5000000000
+    ),
+    (
+        "Klingon Homeworld",
+        "Class M",
+        "Nitrogen-Oxygen",
+        1.15,
+        30000000000
+    ),
+    (
+        "Romulus",
+        "Class M",
+        "Oxygen-Nitrogen",
+        1.0,
+        10000000000
+    ),
+    (
+        "Vulcan",
+        "Class M",
+        "Oxygen-Nitrogen",
+        1.1,
+        7500000000
+    );
+
 -- Species Table
 CREATE TABLE Species (
     SpeciesID INT AUTO_INCREMENT PRIMARY KEY,
@@ -100,6 +248,57 @@ CREATE TABLE Species (
     AverageLifespan INT,
     FOREIGN KEY (HomePlanetID) REFERENCES Planet (PlanetID)
 );
+
+INSERT INTO
+    Species (
+        Name,
+        Classification,
+        HomePlanetID,
+        AverageHeight,
+        AverageLifespan
+    )
+VALUES (
+        "Andorian",
+        "Humanoid",
+        12,
+        1.8,
+        80
+    ),
+    (
+        "Bajoran",
+        "Humanoid",
+        13,
+        1.7,
+        80
+    ),
+    (
+        "Ferengi",
+        "Humanoid",
+        15,
+        1.6,
+        140
+    ),
+    (
+        "Klingon",
+        "Humanoid",
+        16,
+        2.0,
+        75
+    ),
+    (
+        "Romulan",
+        "Humanoid",
+        17,
+        1.8,
+        85
+    ),
+    (
+        "Vulcan",
+        "Humanoid",
+        18,
+        1.8,
+        120
+    );
 
 CREATE Table FSGFederationShips (
     name VARCHAR(100) NOT NULL,
@@ -135,9 +334,7 @@ VALUES (
     ("Voyager", 80, 80, 40, 8),
     ("Discovery", 180, 180, 90, 20);
 
-ALTER TABLE FSGFederationShips
-ADD img VARCHAR(255);
-
+ALTER TABLE FSGFederationShips ADD img VARCHAR(255);
 
 UPDATE FSGFederationShips
 SET
