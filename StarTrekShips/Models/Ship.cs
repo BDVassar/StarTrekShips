@@ -4,7 +4,6 @@ namespace StarTrekShips.Models;
 public class Ship
 {
   public string name { get; set; }
-  public string type { get; set; }
   public string quadrant { get; set; }
   public string captain { get; set; }
   public int crewComplement { get; set; }
@@ -24,5 +23,4 @@ public class Ship
   public int shuttles { get; set; }
   public string classification { get; set; }
   public int capacity { get; set; }
-  public Account Creator { get; set; }
 }

@@ -11,7 +11,7 @@ public class CrewMember
 
   public string Name { get; set; }
 
-  public string Rank { get; set; }
+  public string Rating { get; set; }
 
   public string Position { get; set; }
 
@@ -21,6 +21,6 @@ public class CrewMember
 
   public string Gender { get; set; }
 
-  public Species Species { get; set; }
+  public string CrewImg { get; set; }
 }
 

@@ -18,7 +18,6 @@ class CrewService {
   async getAllCrewMembers() {
     try {
       const response = await api.get("api/crews");
-      console.log(response.data)
       return response.data;
     } catch (error) {
       console.error('Error fetching Crew Members:', error);

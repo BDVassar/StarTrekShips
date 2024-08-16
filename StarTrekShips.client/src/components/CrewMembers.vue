@@ -1,58 +1,25 @@
 <template>
   <div>
     <h1>Crew Members</h1>
-    <div v-if="crewMembers.length > 0">
-      <div>
-        <select v-model="selectedCrewMember" @change="showSelectedCrewMember">
-          <option v-for="crewMember in crewMembers" :key="crewMember.id" :value="crewMember">
-            {{ crewMember.Name }}
-          </option>
-        </select>
-      </div>
-      <div v-if="selectedCrewMember">
-        <h2>{{ selectedCrewMember.Name }}</h2>
-        <ul>
-          <li>Rank: {{ selectedCrewMember.Rank }}</li>
-          <li>Position: {{ selectedCrewMember.Position }}</li>
-          <li>Age: {{ selectedCrewMember.Age }}</li>
-          <li>Gender: {{ selectedCrewMember.Gender }}</li>
-          <li>Species: {{ selectedCrewMember.Species.name }}</li>
-        </ul>
+    <div v-if="crewMembers && crewMembers.length > 0">
+      <div class="card-container">
+        <div v-for="(crewMember, index) in crewMembers" :key="index" class="card">
+          <!-- Crew member image -->
+          <img :src="crewMember.crewImg" :alt="crewMember.name" class="card-image" />
+          <!-- Crew member details -->
+          <div class="card-body">
+            <h3>{{ crewMember.name }}</h3>
+            <p>Rank: {{ crewMember.rating }}</p>
+            <p>Position: {{ crewMember.position }}</p>
+            <p>Age: {{ crewMember.age }}</p>
+            <p>Gender: {{ crewMember.gender }}</p>
+          </div>
+        </div>
       </div>
     </div>
     <div v-else>
       <p>No crew members found.</p>
     </div>
-    <hr />
-    <h2>Add New Crew Member</h2>
-    <form @submit.prevent="addCrewMember">
-      <div>
-        <label for="name">Name:</label>
-        <input v-model="newCrewMember.Name" type="text" id="name" required />
-      </div>
-      <div>
-        <label for="rank">Rank:</label>
-        <input v-model="newCrewMember.Rank" type="text" id="rank" required />
-      </div>
-      <div>
-        <label for="position">Position:</label>
-        <input v-model="newCrewMember.Position" type="text" id="position" required />
-      </div>
-      <!-- Add input fields for Age, Gender, and Species -->
-      <div>
-        <label for="age">Age:</label>
-        <input v-model.number="newCrewMember.Age" type="number" id="age" required />
-      </div>
-      <div>
-        <label for="gender">Gender:</label>
-        <input v-model="newCrewMember.Gender" type="text" id="gender" required />
-      </div>
-      <div>
-        <label for="species">Species:</label>
-        <input v-model="newCrewMember.Species.name" type="text" id="species" required />
-      </div>
-      <button type="submit">Add Crew Member</button>
-    </form>
   </div>
 </template>
 
@@ -62,39 +29,56 @@ import CrewService from '../services/CrewService.js';
 export default {
   data() {
     return {
-      crewMembers: [],
-      selectedCrewMember: null,
+      crewMembers: null,
       newCrewMember: {
         Name: '',
-        Rank: '',
+        Rating: '',
         Position: '',
         Age: '',
         Gender: '',
-        Species: { name: '' },
+        crewImg: '',
       },
     };
   },
   async created() {
-    this.crewMembers = await CrewService.getAllCrewMembers();
+    this.fetchCrewMembers();
   },
   methods: {
-    async showSelectedCrewMember() {
-      // CrewService needs a method getCrewMemberById(id)
-      const crewMemberId = this.selectedCrewMember.CrewMemberID; // Assuming CrewMember has id property
-      this.selectedCrewMember = await CrewService.getCrewMemberById(crewMemberId);
-    },
-    async addCrewMember() {
-      await CrewService.addCrewMember(this.newCrewMember);
-      this.crewMembers.push(this.newCrewMember);
-      this.newCrewMember = {
-        Name: '',
-        Rank: '',
-        Position: '',
-        Age: '',
-        Gender: '',
-        Species: { name: '' },
-      };
+    async fetchCrewMembers() {
+      try {
+        const response = await CrewService.getAllCrewMembers();
+        this.crewMembers = response;
+        console.log(response)
+      } catch (error) {
+        console.error('Error fetching crew members: ', error);
+      }
     },
   },
 };
 </script>
+<style>
+/* Add these styles */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.card-image {
+  width: 100%;
+  height: 150px;
+  /* Adjust the height as per your design */
+  border-radius: 5px;
+  object-fit: cover;
+}
+</style>
+These styles will make the
