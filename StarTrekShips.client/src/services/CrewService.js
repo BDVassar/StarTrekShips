@@ -7,7 +7,6 @@ class CrewService {
   async addCrewMember(newCrewMember) {
     try {
       const response = await api.post("api/crews", newCrewMember);
-      console.log(response.data)
       return response.data
     } catch (error) {
       console.log('Error creating Crew Member', error);

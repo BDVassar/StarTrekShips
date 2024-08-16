@@ -23,6 +23,9 @@ CREATE TABLE ships (
 ) default charset utf8 COMMENT '';
 
 ALTER TABLE ships
+DROP COLUMN type;
+
+ALTER TABLE ships
 ADD COLUMN type VARCHAR(255) NOT NULL COMMENT 'Type of the ship',
 ADD COLUMN captain VARCHAR(255) NULL COMMENT 'Name of the current captain',
 ADD COLUMN passengerCapacity INT NULL COMMENT 'Number of passengers the ship can accommodate',
@@ -33,8 +36,30 @@ ADD COLUMN sickBay BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Does the ship have a 
 ADD COLUMN cloakingDevice BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Does the ship have a cloaking device?',
 ADD COLUMN tractorBeam BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Does the ship have a tractor beam?',
 ADD COLUMN transporter BOOLEAN NOT NULL DEFAULT FALSE COMMENT 'Does the ship have a transporter?',
-ADD COLUMN capacity INT NULL COMMENT 'Cargo capacity of the ship',
-MODIFY creatorId VARCHAR(255) NULL COMMENT 'Account ID of the creator';
+ADD COLUMN capacity INT NULL COMMENT 'Cargo capacity of the ship';
+
+INSERT INTO ships (name, quadrant, crewComplement, phasers, torpedos, shields, shipPrefix, alliance, shuttles, classification, captain, passengerCapacity, speed, sensors, dockingBay, sickBay, cloakingDevice, tractorBeam, transporter, capacity)
+VALUES 
+    -- USS Enterprise (NCC-1701)
+    ('USS Enterprise', 'Alpha Quadrant', 430, TRUE, TRUE, TRUE, 'USS', 'United Federation of Planets', 3, 'Constitution', 'J.T. Kirk', 1000, 8, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 8000),
+    -- USS Enterprise-A (NCC-1701-A)
+    ('USS Enterprise-A', 'Alpha Quadrant', 1016, TRUE, TRUE, TRUE, 'USS', 'United Federation of Planets', 5, 'Galaxy', 'James T. Kirk', 1500, 9.8, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 12000),
+    -- USS Voyager (NCC-74656)
+    ('USS Voyager', 'Delta Quadrant', 1578, TRUE, TRUE, TRUE, 'USS', 'United Federation of Planets', 5, 'Intrepid', 'Kathryn Janeway', 1400, 9.9, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 75000),
+    -- USS Deep Space Nine (NCC-74654)
+    ('USS Deep Space Nine', 'Gamma Quadrant', 1022, TRUE, TRUE, TRUE, 'USS', 'United Federation of Planets', 0, 'Space Station', 'Benjamin Sisko', 3000, NULL, TRUE, 5, TRUE, FALSE, TRUE, TRUE, 5000),
+    -- USS Defiant (NCC-1764)
+    ('USS Defiant', 'Alpha Quadrant', 450, TRUE, TRUE, TRUE, 'USS', 'United Federation of Planets', 2, 'Cruiser', 'Worf', 500, 8, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 10000),
+    -- USS Excelsior (NCC-1701-D)
+    ('USS Excelsior', 'Alpha Quadrant', 1024, TRUE, TRUE, TRUE, 'USS', 'United Federation of Planets', 4, 'Sovereign', 'Jean-Luc Picard', 1200, 9.6, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 15000),
+    -- USS Galaxy (NCC-1750)
+    ('USS Galaxy', 'Alpha Quadrant', 842, TRUE, TRUE, TRUE, 'USS', 'United Federation of Planets', 3, 'Galaxy', 'Rayford Steppenwolf', 800, 9.7, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 10000),
+    -- USS Reliant (NCC-74605)
+    ('USS Reliant', 'Alpha Quadrant', 472, TRUE, TRUE, TRUE, 'USS', 'United Federation of Planets', 2, 'Cruiser', 'David Marcus', 400, 8.5, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, 5000),
+    -- USS Enterprise-D (NCC-1701-D)
+    ('USS Enterprise-D', 'Alpha Quadrant', 1012, TRUE, TRUE, TRUE, 'USS', 'United Federation of Planets', 4, 'Galaxy', 'Jean-Luc Picard', 1000, 9.8, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 15000),
+    -- USS Discovery (NCC-1031)
+    ('USS Discovery', 'Unknown', 1500, TRUE, TRUE, TRUE, 'USS', 'United Federation of Planets', 5, 'Science Vessel', 'Philippa Georgiou', 1400, 9.9, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, 25000);
 
 DROP TABLE ships;
 
