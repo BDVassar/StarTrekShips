@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Crew Members</h1>
+    <h1 class="text-center mb-4"> Crew Members</h1>
     <div v-if="crewMembers && crewMembers.length > 0">
       <div class="card-container">
         <div v-for="(crewMember, index) in crewMembers" :key="index" class="card">
@@ -81,4 +81,3 @@ export default {
   object-fit: cover;
 }
 </style>
-These styles will make the
